@@ -404,7 +404,7 @@
         <div class="topbar-sub">CPHL Uganda &mdash; 2026-02-01 to 2026-04-16</div>
       </div>
     </div>
-    <div class="topbar-stamp">Generated 27 Apr 2026, 14:23 EAT</div>
+    <div class="topbar-stamp">Generated 27 Apr 2026, 14:30 EAT</div>
   </div>
 
   <main>
@@ -420,15 +420,17 @@
       <div class="method-body">
         <p class="method-title">How these figures were produced</p>
         <p class="method-text">
-          VL test request data was exported from the lab information system as three monthly CSV files
-          (Feb &ndash; Apr 2026) and loaded into a staging database alongside the logistics packages table.
-          Each VL record carries a <strong>tracking code</strong> assigned when a sample is collected at a facility.
-          Those tracking codes were cleaned &mdash; stripping whitespace, nulls, and placeholder values &mdash;
-          then deduplicated to produce a set of <strong>unique VL tracking codes</strong> per period.
-          Each unique code was looked up against the <strong>packages barcode</strong> column (also deduplicated).
-          A code is counted as <span class="pill-green">included</span> when a match is found, and as an
-          <span class="pill-red">exception</span> when no matching barcode exists in the packages system.
-          The inclusion percentage is the share of unique VL codes that were successfully matched.
+          VL sample data was exported from the <strong>VL Dashboard</strong> for February, March, and
+          mid-April 2026, then compared against tracking records in <strong>ResTrack</strong> (the packages table).
+          Every VL sample dispatched from a facility <em>should</em> have a corresponding barcode record in ResTrack &mdash;
+          so all VL Dashboard entries are expected to exist in ResTrack.
+          The reverse is not expected: ResTrack holds a broader set of logistics data beyond VL,
+          so unmatched ResTrack records are normal and are not treated as errors.
+          VL tracking codes were deduplicated per period and each unique code was looked up against the ResTrack barcode column.
+          A code is <span class="pill-green">included</span> when a match is found in ResTrack, and flagged as an
+          <span class="pill-red">exception</span> when no matching barcode exists &mdash; indicating that VL sample
+          was not tracked through the logistics system.
+          The inclusion percentage reflects how well VL sample dispatch is captured in ResTrack.
         </p>
       </div>
     </div>
