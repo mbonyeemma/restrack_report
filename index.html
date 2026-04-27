@@ -118,31 +118,16 @@
       margin-bottom: 16px;
     }
 
-    /* ── Methodology banner ────────────────────────────── */
-    .method-banner {
-      background: #f0fdf8;
-      border: 1px solid #bbf0de;
-      border-left: 4px solid var(--green);
-      border-radius: var(--radius);
-      padding: 16px 18px;
-      margin-bottom: 20px;
-      display: flex;
-      gap: 14px;
-      align-items: flex-start;
-    }
-    .method-icon { flex-shrink: 0; margin-top: 2px; }
-    .method-title {
+    /* ── Notes list ────────────────────────────────────── */
+    .notes-list {
+      margin: 0;
+      padding-left: 20px;
+      color: var(--muted);
       font-size: 13px;
-      font-weight: 700;
-      color: #166534;
-      margin-bottom: 6px;
+      line-height: 1.8;
     }
-    .method-text {
-      font-size: 13px;
-      color: #1e4d38;
-      line-height: 1.65;
-    }
-    .method-body { flex: 1; }
+    .notes-list li { margin-bottom: 4px; }
+    .notes-list li:last-child { margin-bottom: 0; }
     .pill-green {
       display: inline-block;
       background: #dcfce7;
@@ -404,36 +389,10 @@
         <div class="topbar-sub">CPHL Uganda &mdash; 2026-02-01 to 2026-04-16</div>
       </div>
     </div>
-    <div class="topbar-stamp">Generated 27 Apr 2026, 14:30 EAT</div>
+    <div class="topbar-stamp">Generated 27 Apr 2026, 14:32 EAT</div>
   </div>
 
   <main>
-
-    <!-- Methodology -->
-    <div class="method-banner">
-      <div class="method-icon">
-        <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-          <circle cx="9" cy="9" r="8" stroke="#188568" stroke-width="1.5"/>
-          <path d="M9 8v5M9 5.5v.5" stroke="#188568" stroke-width="1.8" stroke-linecap="round"/>
-        </svg>
-      </div>
-      <div class="method-body">
-        <p class="method-title">How these figures were produced</p>
-        <p class="method-text">
-          VL sample data was exported from the <strong>VL Dashboard</strong> for February, March, and
-          mid-April 2026, then compared against tracking records in <strong>ResTrack</strong> (the packages table).
-          Every VL sample dispatched from a facility <em>should</em> have a corresponding barcode record in ResTrack &mdash;
-          so all VL Dashboard entries are expected to exist in ResTrack.
-          The reverse is not expected: ResTrack holds a broader set of logistics data beyond VL,
-          so unmatched ResTrack records are normal and are not treated as errors.
-          VL tracking codes were deduplicated per period and each unique code was looked up against the ResTrack barcode column.
-          A code is <span class="pill-green">included</span> when a match is found in ResTrack, and flagged as an
-          <span class="pill-red">exception</span> when no matching barcode exists &mdash; indicating that VL sample
-          was not tracked through the logistics system.
-          The inclusion percentage reflects how well VL sample dispatch is captured in ResTrack.
-        </p>
-      </div>
-    </div>
 
     <!-- KPI Summary -->
     <p class="section-title">Summary</p>
@@ -67250,7 +67209,7 @@
     </div>
 
     <!-- Exception List -->
-    <p class="section-title">Exception List</p>
+    <p class="section-title" id="exceptions">Exception List</p>
     <div class="panel">
       <h2>VL Codes Not Found in Packages</h2>
       <p class="panel-sub">639 unique VL tracking codes have no matching barcode in the packages system.</p>
@@ -73658,6 +73617,20 @@
         </tbody>
         </table>
       </div>
+    </div>
+
+    <!-- Notes -->
+    <p class="section-title">Notes</p>
+    <div class="panel">
+      <ul class="notes-list">
+        <li>Data was exported from the <strong>VL Dashboard</strong> for February, March, and mid-April 2026.</li>
+        <li>It was compared against sample tracking records in <strong>ResTrack</strong> (packages table).</li>
+        <li>All VL Dashboard entries are expected to exist in ResTrack &mdash; every VL sample dispatched from a facility should have a corresponding barcode in ResTrack.</li>
+        <li>The reverse is not expected: ResTrack holds broader logistics data beyond VL, so ResTrack records with no VL match are normal and not treated as errors.</li>
+        <li>VL tracking codes were deduplicated per period before matching.</li>
+        <li><span class="pill-green">Included</span> &mdash; VL tracking code found in ResTrack.</li>
+        <li><span class="pill-red">Exception</span> &mdash; VL tracking code with no matching barcode in ResTrack, meaning that sample was not tracked through the logistics system.</li>
+      </ul>
     </div>
 
   </main>
